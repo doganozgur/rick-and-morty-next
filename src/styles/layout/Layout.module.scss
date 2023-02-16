@@ -1,0 +1,8 @@
+@import '../../styles/abstracts/mixins';
+
+.mainContainer {
+    margin: 1rem 2rem;
+    @include respond-to(small) {
+        margin: 2rem 3rem;
+    }
+}

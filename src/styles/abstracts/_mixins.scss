@@ -1,6 +1,6 @@
 @mixin respond-to($screen) {
   @if $screen == xsmall {
-    @media only screen and (max-width: 40rem) {
+    @media only screen and (max-width: 20rem) {
       @content;
     }
   }
@@ -19,7 +19,7 @@
       @content;
     }
   }
-  @if $screen ==  xlarge {
+  @if $screen == xlarge {
     @media only screen and (min-width: 80rem) {
       @content;
     }

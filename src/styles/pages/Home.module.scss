@@ -1,0 +1,14 @@
+@import '../../styles/abstracts/mixins';
+
+.locationList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    @include respond-to(medium) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3.125rem;
+    }
+    @include respond-to(large) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

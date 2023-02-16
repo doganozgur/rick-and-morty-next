@@ -1,0 +1,35 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixins';
+
+.location {
+    background-color: $color-lemon;
+    border-radius: .9375rem;
+    padding: 1rem;
+    .title {
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        line-height: 1.375rem;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        row-gap: .5rem;
+        li {
+            display: flex;
+            font-size: 0.8125rem;
+
+            
+            span:first-child {
+                width: 40%;
+            }
+            @include respond-to(xsmall) {
+                span:first-child {
+                    width: auto;
+                }
+            }
+            span:nth-child(2) {
+                font-weight: 500;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@import '../../styles/abstracts/mixins';
+
+.header {
+    height: 7.5rem;
+    border-bottom: 1px solid rgba(17, 176, 200, 0.11);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 2.25rem;
+    .logo {
+        width: 8.75rem;
+        height: 2.5rem;
+    }
+    @include respond-to(small) {
+        align-items: center;
+        padding-bottom: 0;
+        .logo {
+            width: 13.125rem;
+            height: 3.75rem;
+        }
+    }
+}
