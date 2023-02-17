@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: .4rem;
+    padding-block: 3rem;
+    li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.125rem;
+        height: 3.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        &:global(.active) {
+            background-color: #D9D9D9 !important;
+            border-radius: 100vh;
+        }
+    }
+}

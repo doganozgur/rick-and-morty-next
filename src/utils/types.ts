@@ -16,7 +16,7 @@ export type Location = {
 };
 
 export type LocationData = {
-  info: object;
+  totalItems: number;
   results: Location[];
 };
 
