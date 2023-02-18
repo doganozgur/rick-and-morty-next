@@ -1,32 +1,45 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styles from "../styles/components/Pagination.module.scss";
+import { usePagination, DOTS } from "../hooks/usePagination";
 
 type Props = {
-  itemsPerPage: number;
-  totalItems: number;
+  onPageChange: (page: number) => void;
+  totalCount: number;
+  siblingCount?: number;
+  currentPage: number;
+  pageSize: number;
 };
 
-const Pagination = ({ itemsPerPage, totalItems }: Props) => {
-  const router = useRouter();
-  const pageNumbers = [];
-  const { page } = router.query;
+const Pagination: React.FC<Props> = ({
+  onPageChange,
+  totalCount,
+  siblingCount = 1,
+  currentPage,
+  pageSize,
+}) => {
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount,
+    siblingCount,
+    pageSize,
+  });
 
-  // Push page numbers to an array
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-    pageNumbers.push(i);
+  // If there are less than 2 times in pagination range we shall not render the component
+  if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
+    return null;
   }
 
+  let lastPage = paginationRange && paginationRange[paginationRange.length - 1];
   return (
     <ul className={styles.pagination}>
-      {/* Previous button */}
-      <li>
-        {Number(page) > 1 ? (
+      {/* Left navigation arrow */}
+      <li onClick={() => onPageChange(currentPage - 1)}>
+        {currentPage > 1 ? (
           <Link
             style={{
-              pointerEvents: `${Number(page) < 2 ? "none" : "auto"}`,
+              pointerEvents: `${currentPage < 2 ? "none" : "auto"}`,
             }}
-            href={`?page=${Number(page) > 1 && Number(page) - 1}`}
+            href={`?page=${currentPage > 1 && currentPage - 1}`}
           >
             {"<"}
           </Link>
@@ -34,26 +47,35 @@ const Pagination = ({ itemsPerPage, totalItems }: Props) => {
           ""
         )}
       </li>
-      {pageNumbers.map((number) => (
-        <li key={number}>
-          <Link
-            className={Number(page) === number ? "active" : ""}
-            href={`?page=${number}`}
-          >
-            {number}
-          </Link>
-        </li>
-      ))}
+      {paginationRange?.map((pageNumber, idx) => {
+        // If the pageItem is a DOT, render the DOTS unicode character
+        if (pageNumber === DOTS) {
+          return (
+            <li
+              key={pageNumber}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              &#8230;
+            </li>
+          );
+        }
+
+        // Render our Page Pills
+        return (
+          <li key={pageNumber} onClick={() => onPageChange(Number(pageNumber))}>
+            <Link
+              href={`?page=${pageNumber}`}
+              className={`${currentPage === pageNumber ? "active" : ""}`}
+            >
+              {pageNumber}
+            </Link>
+          </li>
+        );
+      })}
       {/* Next button */}
-      <li>
-        {Number(page) !== pageNumbers.length ? (
-          <Link
-            href={`?page=${
-              Number(page) < pageNumbers.length ? Number(page) + 1 : "#"
-            }`}
-          >
-            {">"}
-          </Link>
+      <li onClick={() => onPageChange(currentPage + 1)}>
+        {currentPage !== lastPage ? (
+          <Link href={`?page=${currentPage + 1}`}>{">"}</Link>
         ) : (
           ""
         )}
