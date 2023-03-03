@@ -1,6 +1,8 @@
+import Pagination from "@/components/Pagination";
 import ResidentSingle from "@/components/ResidentSingle";
 import { Resident } from "@/utils/types";
 import { GetServerSideProps } from "next";
+import { useState } from "react";
 
 type Props = {
   results: Resident[];
@@ -8,10 +10,22 @@ type Props = {
 };
 
 const LocationDetails = ({ results, totalCount }: Props) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <div>
       {results.length > 0 ? (
-        results?.map((item) => <ResidentSingle key={item.id} data={item} />)
+        <>
+          {results?.map((item) => (
+            <ResidentSingle key={item.id} data={item} />
+          ))}
+          <Pagination
+            currentPage={currentPage}
+            totalCount={totalCount}
+            pageSize={4}
+            onPageChange={(page: number) => setCurrentPage(page)}
+          />
+        </>
       ) : (
         <div>No characters found...</div>
       )}

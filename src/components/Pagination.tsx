@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/components/Pagination.module.scss";
 import { usePagination, DOTS } from "../hooks/usePagination";
+import { useRouter } from "next/router";
 
 type Props = {
   onPageChange: (page: number) => void;
@@ -17,17 +18,14 @@ const Pagination: React.FC<Props> = ({
   currentPage,
   pageSize,
 }) => {
+  const router = useRouter();
+  const { id } = router.query;
   const paginationRange = usePagination({
     currentPage,
     totalCount,
     siblingCount,
     pageSize,
   });
-
-  // If there are less than 2 times in pagination range we shall not render the component
-  if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
-    return null;
-  }
 
   let lastPage = paginationRange && paginationRange[paginationRange.length - 1];
   return (
@@ -39,7 +37,7 @@ const Pagination: React.FC<Props> = ({
             style={{
               pointerEvents: `${currentPage < 2 ? "none" : "auto"}`,
             }}
-            href={`?page=${currentPage > 1 && currentPage - 1}`}
+            href={`${id ? id : ""}/?page=${currentPage > 1 && currentPage - 1}`}
           >
             {"<"}
           </Link>
@@ -64,7 +62,7 @@ const Pagination: React.FC<Props> = ({
         return (
           <li key={pageNumber} onClick={() => onPageChange(Number(pageNumber))}>
             <Link
-              href={`?page=${pageNumber}`}
+              href={`${id ? id : ""}/?page=${pageNumber}`}
               className={`${currentPage === pageNumber ? "active" : ""}`}
             >
               {pageNumber}
@@ -75,7 +73,7 @@ const Pagination: React.FC<Props> = ({
       {/* Next button */}
       <li onClick={() => onPageChange(currentPage + 1)}>
         {currentPage !== lastPage ? (
-          <Link href={`?page=${currentPage + 1}`}>{">"}</Link>
+          <Link href={`${id ? id : ""}/?page=${currentPage + 1}`}>{">"}</Link>
         ) : (
           ""
         )}
