@@ -1,0 +1,39 @@
+@import '../../styles/abstracts/variables';
+
+.characterImg {
+    border-radius: 15px;
+}
+.title {
+    color: $color-brown;
+}
+.meta {
+    position: relative;
+    padding-inline-start: 1.5rem;
+    font-weight: 500;
+    line-height: 22px;
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 100vh;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1rem;
+        height: 1rem;
+    }
+    &:global(.dead) {
+        &::before {
+            background-color: $color-red;
+        }
+    }
+    &:global(.alive) {
+        &::before {
+            background-color: $color-leaf;
+        }
+    }
+    &:global(.unknown) {
+        &::before {
+            background-color: $color-gray;
+        }
+    }
+}

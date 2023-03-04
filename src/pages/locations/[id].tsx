@@ -1,8 +1,9 @@
 import Pagination from "@/components/Pagination";
-import ResidentSingle from "@/components/ResidentSingle";
+import CharacterSingle from "@/components/CharacterSingle";
 import { Resident } from "@/utils/types";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
+import styles from "../../styles/pages/Locations.module.scss";
 
 type Props = {
   results: Resident[];
@@ -13,12 +14,14 @@ const LocationDetails = ({ results, totalCount }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div>
+    <section>
       {results.length > 0 ? (
         <>
-          {results?.map((item) => (
-            <ResidentSingle key={item.id} data={item} />
-          ))}
+          <div className={styles.charactersHolder}>
+            {results?.map((item) => (
+              <CharacterSingle key={item.id} data={item} />
+            ))}
+          </div>
           <Pagination
             currentPage={currentPage}
             totalCount={totalCount}
@@ -29,7 +32,7 @@ const LocationDetails = ({ results, totalCount }: Props) => {
       ) : (
         <div>No characters found...</div>
       )}
-    </div>
+    </section>
   );
 };
 
