@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["rickandmortyapi.com"],
   },
+  target: "serverless",
 };
 
 module.exports = nextConfig;
