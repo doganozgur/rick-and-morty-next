@@ -19,6 +19,7 @@ const CharacterSingle = ({ data }: Props) => {
           alt={name}
           width={336}
           height={336}
+          priority
         />
         <h1 className={styles.title}>{name}</h1>
         <p className={`${styles.meta} ${status.toLowerCase()}`}>
