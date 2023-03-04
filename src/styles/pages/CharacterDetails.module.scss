@@ -1,5 +1,9 @@
 @import '../../styles/abstracts/variables';
 
+.detailsCart {
+    max-width: 340px;
+}
+
 .characterImg {
     border-radius: 15px;
     margin-bottom: .5rem;
@@ -12,6 +16,7 @@
     padding-inline-start: 1.5rem;
     font-weight: 500;
     line-height: 22px;
+    margin-block: 5px;
     &::before {
         content: "";
         position: absolute;
@@ -37,4 +42,13 @@
             background-color: $color-gray;
         }
     }
+}
+.additionalInfos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.gender {
+    font-weight: 300;
+    color: #818181;
 }
