@@ -1,5 +1,10 @@
 @import '../../styles/abstracts/variables';
 
+.character {
+    display: flex;
+    gap: 4rem;
+}
+
 .detailsCart {
     max-width: 340px;
 }

@@ -1,4 +1,4 @@
-import { Resident } from "@/utils/types";
+import { ButtonEnums, Resident } from "@/utils/types";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 
@@ -6,6 +6,7 @@ import Pagination from "@/components/Pagination";
 import CharacterSingle from "@/components/CharacterSingle";
 import styles from "../../styles/pages/Locations.module.scss";
 import { fetchCharacters } from "../../utils/fetchCharacters";
+import Button from "@/components/Button";
 
 type Props = {
   result: Resident[];
@@ -14,9 +15,14 @@ type Props = {
 
 const LocationDetails = ({ result, totalCount }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
-
+  console.log(result);
   return (
     <section>
+      <div className={styles.buttonsHolder}>
+        <Button variant={ButtonEnums.Dead}>Dead</Button>
+        <Button variant={ButtonEnums.Alive}>Alive</Button>
+        <Button variant={ButtonEnums.Unknown}>Unknown</Button>
+      </div>
       {result.length > 0 ? (
         <>
           <div className={styles.charactersHolder}>

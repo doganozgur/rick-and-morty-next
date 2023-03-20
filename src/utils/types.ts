@@ -30,3 +30,9 @@ export type Character = {
   location: string;
   type: string;
 };
+
+export enum ButtonEnums {
+  Dead = "dead",
+  Alive = "alive",
+  Unknown = "unknown",
+}

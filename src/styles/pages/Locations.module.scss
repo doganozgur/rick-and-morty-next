@@ -12,3 +12,9 @@
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+.buttonsHolder {
+    display: flex;
+    gap: .625rem;
+    margin-block-end: 1.75rem;
+}

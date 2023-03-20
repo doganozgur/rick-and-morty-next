@@ -1,0 +1,50 @@
+@import '../abstracts/variables';
+
+.button button {
+    background-color: transparent;
+    border-radius: 100vh;
+    border: 1px solid transparent;
+    height: 2.5rem;
+    width: 8.75rem;
+    display: flex;
+    align-items: center;
+    padding-inline-start: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: $color-brown;
+    line-height: 22px;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+
+    &:before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 11px;
+        background-color: transparent;
+        border-radius: 100vh;
+    }
+    &.dead {
+        border-color: $color-red;
+        &:before {
+            background-color: $color-red;
+        }
+    }
+    &.alive {
+        border-color: $color-leaf;
+        &:before {
+            background-color: $color-leaf;
+        }
+    }
+    &.unknown {
+        border-color: $color-gray;
+        &:before {
+            background-color: $color-gray;
+        }
+    }
+}

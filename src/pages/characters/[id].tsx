@@ -10,25 +10,28 @@ const CharacterDetails = ({ details }: Props) => {
   const { name, status, species, type, gender, image, location } = details;
 
   return (
-    <article className={styles.detailsCart}>
-      <Image
-        className={styles.characterImg}
-        src={image}
-        alt={name}
-        width={336}
-        height={336}
-      />
-      <h1 className={styles.title}>{name}</h1>
-      <p className={`${styles.meta} ${status.toLowerCase()}`}>
-        {status} - {species}
-      </p>
-      <div className={styles.additionalInfos}>
-        <span className={styles.location}>{location}</span>
-        <span className={styles.gender}>
-          {type} {type && "-"} {gender}
-        </span>
-      </div>
-    </article>
+    <section className={styles.character}>
+      <article className={styles.detailsCart}>
+        <Image
+          className={styles.characterImg}
+          src={image}
+          alt={name}
+          width={336}
+          height={336}
+        />
+        <h1 className={styles.title}>{name}</h1>
+        <p className={`${styles.meta} ${status.toLowerCase()}`}>
+          {status} - {species}
+        </p>
+        <div className={styles.additionalInfos}>
+          <span className={styles.location}>{location}</span>
+          <span className={styles.gender}>
+            {type} {type && "-"} {gender}
+          </span>
+        </div>
+      </article>
+      <p>Details are coming soon...</p>
+    </section>
   );
 };
 export default CharacterDetails;
